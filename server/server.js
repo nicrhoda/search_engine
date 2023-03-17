@@ -13,7 +13,7 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // if we're in production, serve client/build as static assets
@@ -32,7 +32,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`server is running on ${PORT}`);
-      console.log(`graphql at: http://localhost:${PORT}${server.graphqlPath}`);
+      console.log(`graphql at: http://127.0.0.1:${PORT}${server.graphqlPath}`);
     })
   })
 };
